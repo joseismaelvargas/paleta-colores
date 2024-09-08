@@ -1,12 +1,12 @@
 
-import './App.css'
+ import { Color } from "./components/Color"
 
 function App() {
 
 
   return (
     <>
-     <h1>paleta colores</h1>
+     <Color></Color>
     </>
   )
 }
