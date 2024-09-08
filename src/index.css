@@ -18,8 +18,9 @@ body{
 .div-administrarcolor{
   display: flex;
   flex-direction: column;
+
   width: 500px;
-  height: 300px;
+  height: auto;
   background-color: rgb(204, 211, 211);
   margin: 100px;
   border-radius: 10px;
@@ -37,7 +38,7 @@ body{
 }
 .box{
 display: flex;
-justify-content: center;
+flex-direction: column;
 margin: 50px;
 }
 .color{

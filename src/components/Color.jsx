@@ -1,31 +1,37 @@
 
 import React,{useState} from "react"
 import{stringify, v4 as uuidv4} from "uuid"
+import { useForm } from "react-hook-form"
 
 export const Color=()=>{
-const [value,setvalue]=useState("")
+    const { register, handleSubmit ,formState:{errors}} = useForm();
+    const[entrada,setEntrada]=useState([])
+    console.log(entrada)
 const [ array,setarray]=useState([])
 localStorage.setItem("colores",JSON.stringify(array))
 
- const ingresar=(e)=>{
+ const ingresar=(data,e)=>{
     e.preventDefault()
+    e.target.reset()
 
-   let valuecolor={
-    color:value,
+
+       let valuecolor={
+      color:data.colores,
     id:uuidv4()
    }
+
+
+   setEntrada([valuecolor,...entrada])
+
+
    let Guardar=[valuecolor,...array]
    setarray(Guardar)
-   console.log(array)
+   
+   setvalue("")
    
    
  }
- const input=(e)=>{
-   setvalue(e.target.value)
-   
 
-     
- }
  
  const eliminar=(id)=>{
 let borrar= array.filter((item)=>item.id!==id)
@@ -42,9 +48,17 @@ let borrar= array.filter((item)=>item.id!==id)
          <div className="color">
 
          </div>
-    <form action="" onSubmit={ingresar}>
-      <input type="text" placeholder="Ingrese un Color ej Blue" onChange={input} />
-      <button onSubmit={ingresar} className="btn btn-primary">Ingresar</button>
+    <form action="" onSubmit={handleSubmit(ingresar)}>  <p>@ismaelvargas</p>
+      <input type="text" placeholder="Ingrese un Color ej Blue" name="colores" {
+        ...register("colores",{
+            required:{value:true,message:"No deje este Espacio vacio"},
+            minLength:{value:2,message:"Datos incorrectos"}
+        })
+      } /> 
+    
+      <span style={{color:"red"}} >{errors.colores&&errors.colores.message};
+      </span> 
+      <button type="submit" className="btn btn-primary">Ingresar</button>
     </form>    
         </div>
     
@@ -79,6 +93,7 @@ let borrar= array.filter((item)=>item.id!==id)
             <button className="borrar btn btn-danger" onClick={()=>eliminar(element.id)}>Borrar</button>
          </div>  )
     }
+  
     </section>
    </main>
     
