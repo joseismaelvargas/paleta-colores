@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 export const Color=()=>{
     const { register, handleSubmit ,formState:{errors}} = useForm();
     const[entrada,setEntrada]=useState([])
-    console.log(entrada)
+    
 const [ array,setarray]=useState([])
 localStorage.setItem("colores",JSON.stringify(array))
 
@@ -28,7 +28,7 @@ localStorage.setItem("colores",JSON.stringify(array))
    setarray(Guardar)
    
    setvalue("")
-   
+ 
    
  }
 
@@ -40,12 +40,20 @@ let borrar= array.filter((item)=>item.id!==id)
 
     return(
     <>
-    <main>
+    <main className="main container">
     <div className="div-administrarcolor">
         <h3>Administrar Colores</h3>
         <hr />
         <div className="box">
-         <div className="color">
+         <div style={{
+            
+                width: "100px",
+                height:" 100px",
+                backgroundColor:`blue`,
+                border: "solid 2px black",
+                margin: "0px 10px",
+              
+         }}>
 
          </div>
     <form action="" onSubmit={handleSubmit(ingresar)}>  <p>@ismaelvargas</p>
